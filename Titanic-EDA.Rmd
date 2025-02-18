@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-author: "Aryan Singh 24221114"
+title: "Titanic Dataset Analysis"
+author: "Aryan Singh"
 output: html_document
 ---
 
