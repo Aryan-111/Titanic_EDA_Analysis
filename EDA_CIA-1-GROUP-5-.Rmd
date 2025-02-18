@@ -1,0 +1,73 @@
+---
+title: "Untitled"
+author: "Aryan Singh 24221114"
+output: html_document
+---
+
+## Introduction
+
+In this analysis, we explore the Titanic dataset to understand what factors influenced survival. The variables include Survived, Pclass, Sex, Age, and Fare. We aim to uncover insights about passenger survival based on these features.
+
+## Data Dictionary
+
+The following table outlines the variables in the Titanic dataset and their relevance to the analysis:
+
+```{r}
+# Data Dictionary for Titanic Dataset
+data_dictionary <- data.frame(
+  Variable = c("Survived", "Pclass", "Sex", "Age", "Fare"),
+  Description = c(
+    "Whether the passenger survived (1 = survived, 0 = did not survive)",
+    "The class of the passenger (1 = 1st, 2 = 2nd, 3 = 3rd)",
+    "The gender of the passenger (male/female)",
+    "The age of the passenger (numeric)",
+    "The fare the passenger paid for the ticket (numeric)"
+  ),
+  Relevance_To_Analysis = c(
+  "This is the target variable. We'll analyze how it relates to other variables to understand what factors influenced survival.",
+  "This represents the socio-economic status of the passengers. We'll explore if passengers in higher classes (1st class) had a better chance of survival.",
+  "We will examine whether being female increased the likelihood of survival, as women and children were prioritized for lifeboats.",
+  "We will check if younger passengers (children, infants) had a higher survival rate than older passengers.",
+  "We will explore whether passengers who paid higher fares had a higher chance of survival, indicating a correlation between class and survival."
+  )
+)
+
+
+print(data_dictionary)
+```
+
+
+```{r} 
+## Structure of the Dataset
+library(titanic)
+
+str(titanic::titanic_train)
+```
+
+
+```{r} 
+## Summary Statistics
+summary(titanic::titanic_train)
+```
+
+```{r} 
+## Missing Values Check
+colSums(is.na(titanic::titanic_train))
+```
+
+```{r} 
+## Pie Chart for Survival Distribution
+survival_table <- table(titanic::titanic_train$Survived)
+pie(survival_table, main = "Survival Distribution", col = c("red", "green"))
+```
+
+```{r} 
+## Bar Plot for Survival Count by Gender
+gender_survival <- table(titanic::titanic_train$Sex, titanic::titanic_train$Survived)
+barplot(gender_survival, beside = TRUE, col = c("blue", "pink"), legend = rownames(gender_survival), main = "Survival Count by Gender", xlab = "Gender", ylab = "Count of Passengers")
+```
+
+```{r} 
+## Histogram for Age Distribution
+hist(titanic::titanic_train$Age, col = "lightblue", main = "Histogram of Age", xlab = "Age")
+```
